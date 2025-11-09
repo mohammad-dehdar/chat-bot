@@ -49,7 +49,7 @@ export const Dropdown = ({
             ref={containerRef}
             className={`relative rounded-sm w-full overflow-hidden bg-white drop-shadow-md transition-all duration-500 ease-in-out ${isOpen ? "drop-shadow-[#00FFEA]/90" : "drop-shadow-white/50"} ${className || ""}`}
         >
-            <div className="bg-sidebar m-2 border border-b-0 rounded-t-sm"> 
+            <div className="bg-gradient-to-b from-[#E0F2F1] border border-slate-300 shadow-md border-b-0 to-[#D9E9F0] m-1 rounded-t-sm relative">
                 <div
                     className={`overflow-hidden transition-all duration-300 ease-in-out origin-top ${isOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"} ${panelClassName || ""}`}
                 >

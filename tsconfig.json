@@ -21,7 +21,8 @@
     "paths": {
       "@/*": ["./src/*"],
       "@icon": ["./src/components/shared/icons"],
-      "@icon/*": ["./src/components/shared/icons/*"]
+      "@icon/*": ["./src/components/shared/icons/*"],
+      "zustand": ["./src/lib/zustand"]
     }
   },
   "include": [

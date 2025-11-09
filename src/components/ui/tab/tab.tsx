@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { TabProps } from "./types";
-import { ArrowLeftIcon, ArrowRightIcon } from "@/components/shared/icons";
+import { ArrowRightIcon } from "@/components/shared/icons";
 
 
 export const Tab = ({
@@ -11,6 +11,7 @@ export const Tab = ({
     className,
     tabClassName,
     contentClassName,
+    onSelect,
 }: TabProps) => {
     const [activeId, setActiveId] = useState<string>(
         defaultActiveId || items[0]?.id || ""
@@ -105,7 +106,10 @@ export const Tab = ({
                             <button
                                 key={item.id}
                                 type="button"
-                                onClick={() => setActiveId(item.id)}
+                                onClick={() => {
+                                    setActiveId(item.id);
+                                    onSelect?.(item);
+                                }}
                                 className={`
                                     px-4 py-2 rounded
                                     text-xs font-medium shadow-md
