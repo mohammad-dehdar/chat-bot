@@ -12,4 +12,5 @@ export interface TabProps {
   className?: string;
   tabClassName?: string;
   contentClassName?: string;
+  onSelect?: (item: TabItem) => void;
 }

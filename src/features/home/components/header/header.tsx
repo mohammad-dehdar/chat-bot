@@ -1,29 +1,19 @@
 'use client';
 
-import { Dropdown, Tab } from '@/components/ui';
+import { useChatStore } from '@/features/home/store';
 
-import { getTabItems } from './constants';
+import { ProgramDropdown } from './program-dropdown';
 
 export const HomeHeader = () => {
-    const tabItems = getTabItems();
+    const hasInteracted = useChatStore((state) => state.hasInteracted);
+
+    if (!hasInteracted) {
+        return null;
+    }
 
     return (
         <header className="flex items-center justify-center border-b border-divider bg-white/10 px-6 backdrop-blur">
-            <Dropdown className='w-xl'>
-                {/* کانتینر اصلی محتوا برای اعمال جلوه محوشوندگی */}
-                <div className="relative">
-                    {/* این بخش شامل محتوای داخلی است و حالا Border Fade را دارد */}
-                    <div className="space-y-4 text-right p-2">
-                        <section className="space-y-2 rounded-sm">
-                            <h2 className="text-xs font-medium text-right">برنامه های درمانی شما</h2>
-                            <Tab
-                                items={tabItems}
-                                defaultActiveId="nutrition"
-                            />
-                        </section>
-                    </div>
-                </div>
-            </Dropdown>
+            <ProgramDropdown className="w-xl" />
         </header>
     );
 };
