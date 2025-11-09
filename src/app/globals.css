@@ -4,6 +4,11 @@
   --background: #ffffff;
   --foreground: #171717;
   --sidebar: linear-gradient(to bottom, #e0f2f1, #d9e9f0);
+  --surface: #f9fafb;
+  --surface-muted: #d9d9d9;
+  --accent: #0097a7;
+  --text-muted: #525252;
+  --divider: rgba(82, 82, 82, 0.18);
 }
 
 @theme inline {
@@ -16,6 +21,26 @@
 @layer base {
   .bg-sidebar {
     background: var(--sidebar);
+  }
+
+  .bg-surface {
+    background-color: var(--surface);
+  }
+
+  .bg-input {
+    background-color: var(--surface-muted);
+  }
+
+  .border-accent {
+    border-color: var(--accent);
+  }
+
+  .border-divider {
+    border-color: var(--divider);
+  }
+
+  .text-muted {
+    color: var(--text-muted);
   }
 }
 
