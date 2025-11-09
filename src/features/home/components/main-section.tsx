@@ -1,5 +1,6 @@
 'use client';
 
+import { Input } from '@/components/ui/input';
 import { SendMessageIcon } from '@icon';
 
 export const MainSection = () => {
@@ -17,9 +18,9 @@ export const MainSection = () => {
                                 <SendMessageIcon className="text-muted" />
                             </div>
                         </div>
-                        <input
+                        <Input
                             type="text"
-                            className="flex-1 bg-transparent pr-4 text-right text-slate-900 outline-none placeholder:text-muted"
+                            className="flex-1 bg-transparent pr-4 text-right text-slate-900 placeholder:text-muted"
                             placeholder="پیام خود را بنویسید..."
                             dir="rtl"
                         />

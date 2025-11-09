@@ -1,5 +1,7 @@
 'use client';
 
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import { AddIcon, Dicon, SearchIcon } from '@icon';
 import { useEffect, useRef, useState } from 'react';
 
@@ -37,14 +39,14 @@ export const Sidebar = () => {
             }`}
         >
             <div className={`p-2 flex items-center ${isOpen ? 'justify-end' : 'justify-center'}`}>
-                <button
+                <Button
                     onClick={toggleSidebar}
                     className="p-2 rounded-lg transition-colors hover:bg-surface"
                     aria-label={isOpen ? 'بستن سایدبار' : 'باز کردن سایدبار'}
                     type="button"
                 >
                     <Dicon />
-                </button>
+                </Button>
             </div>
 
             <div className="flex-1 overflow-y-auto p-2 space-y-4">
@@ -56,39 +58,39 @@ export const Sidebar = () => {
                     >
                         <SearchIcon className="text-muted" />
                         {isOpen && (
-                            <input
+                            <Input
                                 type="text"
                                 placeholder="جستجو"
-                                className="w-full bg-transparent text-sm text-right outline-none placeholder:text-muted"
+                                className="bg-transparent text-right placeholder:text-muted"
                             />
                         )}
                     </div>
 
                     {!isOpen && (
-                        <button
+                        <Button
                             type="button"
                             className="absolute inset-0"
                             aria-label="جستجو"
                             onClick={handleCollapsedSearchClick}
                         >
                             <span className="sr-only">جستجو</span>
-                        </button>
+                        </Button>
                     )}
 
                     {!isOpen && isSearchOpen && (
                         <div className="absolute left-full top-0 z-10 ml-3 w-56 rounded-2xl bg-surface p-3 shadow-lg">
-                            <input
+                            <Input
                                 ref={floatingSearchRef}
                                 type="text"
                                 placeholder="جستجو"
-                                className="w-full rounded-xl border border-divider bg-white/40 px-3 py-2 text-right text-sm outline-none placeholder:text-muted"
+                                className="rounded-xl border border-divider bg-white/40 px-3 py-2 text-right placeholder:text-muted"
                                 onBlur={() => setIsSearchOpen(false)}
                             />
                         </div>
                     )}
                 </div>
 
-                <button
+                <Button
                     type="button"
                     className={`flex w-full items-center gap-2 rounded-2xl bg-surface font-semibold shadow-sm transition-all duration-200 ${
                         isOpen ? 'justify-start px-3 py-2' : 'justify-center p-2'
@@ -97,7 +99,7 @@ export const Sidebar = () => {
                 >
                     <AddIcon className="text-muted" />
                     {isOpen && <span>گفتگوی جدید</span>}
-                </button>
+                </Button>
             </div>
         </aside>
     );
