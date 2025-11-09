@@ -1,18 +1,18 @@
 import React, { useId } from 'react';
 
-interface ArrowDownIconProps {
+interface ArrowUpIconProps {
     className?: string;
     width?: number | string;
     height?: number | string;
 }
 
-export const ArrowDownIcon: React.FC<ArrowDownIconProps> = ({
+export const ArrowUpIcon: React.FC<ArrowUpIconProps> = ({
     className,
     width = 20,
     height = 13,
 }) => {
     const id = useId();
-    const gradientId = `paint0_linear_arrow_down_${id}`;
+    const gradientId = `paint0_linear_arrow_up_${id}`;
 
     return (
         <svg
@@ -24,7 +24,7 @@ export const ArrowDownIcon: React.FC<ArrowDownIconProps> = ({
             className={className}
         >
             <path
-                d="M0.356966 2.43967L8.88871 12.4841C9.02623 12.6459 9.19683 12.7758 9.38878 12.8648C9.58074 12.9539 9.78952 13 10.0008 13C10.2121 13 10.4209 12.9539 10.6128 12.8648C10.8048 12.7758 10.9754 12.6459 11.1129 12.4841L19.6446 2.43967C20.4589 1.48092 19.7838 3.24816e-07 18.5325 3.64589e-07L1.46662 9.07056e-07C0.215361 9.46829e-07 -0.459708 1.48092 0.356966 2.43967Z"
+                d="M19.643 10.5603L11.1113 0.515921C10.9738 0.354104 10.8032 0.224213 10.6112 0.135161C10.4193 0.0461077 10.2105 0 9.9992 0C9.78791 0 9.57913 0.0461077 9.38717 0.135161C9.19522 0.224213 9.02463 0.354104 8.8871 0.515921L0.355358 10.5603C-0.458874 11.5191 0.216194 13 1.46745 13L18.5334 13C19.7846 13 20.4597 11.5191 19.643 10.5603Z"
                 fill={`url(#${gradientId})`}
                 fillOpacity="0.8"
             />
@@ -32,9 +32,9 @@ export const ArrowDownIcon: React.FC<ArrowDownIconProps> = ({
                 <linearGradient
                     id={gradientId}
                     x1="10"
-                    y1="6.35809e-07"
+                    y1="13"
                     x2="10"
-                    y2="13"
+                    y2="0"
                     gradientUnits="userSpaceOnUse"
                 >
                     <stop />
