@@ -1,7 +1,6 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+import { Button, Input } from '@/components/ui';
 import { AddIcon, Dicon, SearchIcon } from '@icon';
 import { useEffect, useRef, useState } from 'react';
 
@@ -34,9 +33,8 @@ export const Sidebar = () => {
 
     return (
         <aside
-            className={`relative h-screen border-l border-divider bg-sidebar flex flex-col transition-[width] duration-300 ease-in-out ${
-                isOpen ? 'w-60' : 'w-16'
-            }`}
+            className={`relative h-screen border-l border-divider bg-sidebar flex flex-col transition-[width] duration-300 ease-in-out ${isOpen ? 'w-60' : 'w-16'
+                }`}
         >
             <div className={`p-2 flex items-center ${isOpen ? 'justify-end' : 'justify-center'}`}>
                 <Button
@@ -44,17 +42,15 @@ export const Sidebar = () => {
                     className="p-2 rounded-lg transition-colors hover:bg-surface"
                     aria-label={isOpen ? 'بستن سایدبار' : 'باز کردن سایدبار'}
                     type="button"
-                >
-                    <Dicon />
-                </Button>
+                    icon={<Dicon />}
+                />
             </div>
 
             <div className="flex-1 overflow-y-auto p-2 space-y-4">
                 <div className="relative">
                     <div
-                        className={`flex items-center gap-2 rounded-2xl bg-surface shadow-sm transition-all duration-200 ${
-                            isOpen ? 'px-3 py-2' : 'justify-center p-2'
-                        }`}
+                        className={`flex items-center gap-2 rounded-2xl bg-surface shadow-sm transition-all duration-200 ${isOpen ? 'px-3 py-2' : 'justify-center p-2'
+                            }`}
                     >
                         <SearchIcon className="text-muted" />
                         {isOpen && (
@@ -92,12 +88,11 @@ export const Sidebar = () => {
 
                 <Button
                     type="button"
-                    className={`flex w-full items-center gap-2 rounded-2xl bg-surface font-semibold shadow-sm transition-all duration-200 ${
-                        isOpen ? 'justify-start px-3 py-2' : 'justify-center p-2'
-                    }`}
+                    className={`flex w-full items-center gap-2 rounded-2xl bg-surface font-semibold shadow-sm transition-all duration-200 ${isOpen ? 'justify-start px-3 py-2' : 'justify-center p-2'
+                        }`}
                     title="گفتگوی جدید"
+                    icon={<AddIcon className="text-muted" />}
                 >
-                    <AddIcon className="text-muted" />
                     {isOpen && <span>گفتگوی جدید</span>}
                 </Button>
             </div>

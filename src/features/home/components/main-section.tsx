@@ -1,6 +1,6 @@
 'use client';
 
-import { Input } from '@/components/ui/input';
+import { Input } from '@/components/ui';
 import { SendMessageIcon } from '@icon';
 
 export const MainSection = () => {
@@ -13,7 +13,7 @@ export const MainSection = () => {
             <div className="bg-white/10 p-6">
                 <div className="flex h-11 items-center gap-2">
                     <div className="flex h-12 flex-1 items-center gap-4 rounded-full border border-accent bg-input shadow-lg">
-                        <div className="border-divider !my-4 border-l">
+                        <div className="">
                             <div className="rounded-full bg-white/10 p-4">
                                 <SendMessageIcon className="text-muted" />
                             </div>

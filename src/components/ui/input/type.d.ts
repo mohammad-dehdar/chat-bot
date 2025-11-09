@@ -1,3 +1,11 @@
-import type { DetailedHTMLProps, InputHTMLAttributes } from 'react';
+import type { DetailedHTMLProps, InputHTMLAttributes } from "react";
+import type { RoundedSize } from "@/components/ui/types";
 
-export type InputProps = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>;
+export interface InputProps
+  extends Omit<
+    DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>,
+    "type"
+  > {
+  type?: string;
+  rounded?: RoundedSize;
+}

@@ -1,5 +1,5 @@
+import HomeLayout from '@/features/home/layout';
 import type { ReactNode } from 'react';
-import { HomeLayout } from '@/features/home';
 
 const HomeRouteLayout = ({ children }: { children: ReactNode }) => {
     return <HomeLayout>{children}</HomeLayout>;
