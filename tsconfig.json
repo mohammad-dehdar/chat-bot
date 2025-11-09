@@ -19,7 +19,9 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@icon": ["./src/components/shared/icons"],
+      "@icon/*": ["./src/components/shared/icons/*"]
     }
   },
   "include": [

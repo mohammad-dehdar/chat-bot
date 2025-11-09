@@ -3,6 +3,7 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --sidebar: linear-gradient(to bottom, #e0f2f1, #d9e9f0);
 }
 
 @theme inline {
@@ -12,10 +13,9 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  .bg-sidebar {
+    background: var(--sidebar);
   }
 }
 

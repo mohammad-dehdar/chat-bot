@@ -1,6 +1,10 @@
+import { HomePage } from "@/feature/home";
+import HomeLayout from "@/layouts/home-layout";
+
 export default function Home() {
   return (
-    <div>
-    </div>
+    <HomeLayout>
+      <HomePage />
+    </HomeLayout>
   );
 }

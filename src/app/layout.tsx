@@ -1,4 +1,4 @@
-import RootLayout from '@/layouts/root-layout';
+import RootLayout from '@/layouts/root-layout/root-layout';
 import { PropsWithChildren } from '@/types/children';
 import './globals.css';
 
