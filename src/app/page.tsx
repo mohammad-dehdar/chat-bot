@@ -1,4 +1,4 @@
-import { HomePage } from "@/feature/home";
+import { HomePage } from "@/features/home";
 import HomeLayout from "@/layouts/home-layout";
 
 export default function Home() {
