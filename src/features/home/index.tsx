@@ -1,4 +1,5 @@
-import { MainSection, Sidebar } from "./components";
+import type { PropsWithChildren } from 'react';
+import { MainSection, Sidebar } from './components';
 
 export const HomePage = () => {
     return (
@@ -8,3 +9,7 @@ export const HomePage = () => {
         </>
     );
 };
+
+export { default as HomeLayout } from './layout';
+
+export type HomeLayoutProps = PropsWithChildren;
