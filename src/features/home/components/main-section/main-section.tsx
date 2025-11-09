@@ -1,52 +1,66 @@
-'use client';
+"use client"
 
-import { FormEvent, useMemo, useState } from 'react';
+import { type FormEvent, useMemo, useState } from "react"
+import { Input } from "@/components/ui/input"
+import { SendMessageIcon, UserIcon } from "@icon"
+import { HomeHeader, ProgramDropdown } from "@/features/home/components/header"
+import { useChatStore } from "@/features/home/store"
+import { MessageBubble } from "@/components/shared/message-bubble"
+import Image from "next/image"
+import bgVector1 from '@/assets/icons/Group-1.svg';
+import bgVector2 from '@/assets/icons/Group-2.svg';
 
-import { Input } from '@/components/ui';
-import { SendMessageIcon } from '@icon';
-
-import { HomeHeader, ProgramDropdown } from '../header';
-import { useChatStore } from '../../store';
 
 export const MainSection = () => {
-    const [message, setMessage] = useState('');
-    const hasInteracted = useChatStore((state) => state.hasInteracted);
-    const messages = useChatStore((state) => state.messages);
-    const sendUserMessage = useChatStore((state) => state.sendUserMessage);
+    const [message, setMessage] = useState("")
+    const hasInteracted = useChatStore((state) => state.hasInteracted)
+    const messages = useChatStore((state) => state.messages)
+    const sendUserMessage = useChatStore((state) => state.sendUserMessage)
 
-    const canSendMessage = useMemo(() => message.trim().length > 0, [message]);
+    const canSendMessage = useMemo(() => message.trim().length > 0, [message])
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
+        event.preventDefault()
         if (!canSendMessage) {
-            return;
+            return
         }
 
-        sendUserMessage(message);
-        setMessage('');
-    };
+        sendUserMessage(message)
+        setMessage("")
+    }
 
     return (
-        <main className="flex h-screen flex-1 flex-col">
+        <main className="relative flex h-screen flex-1 flex-col">
             <HomeHeader />
 
             <div className="flex-1 overflow-y-auto p-6">
+                <Image
+                    src={bgVector1}
+                    alt="vector"
+                    width={500}
+                    height={500}
+                    className="absolute -left-60 -top-20 -z-50"
+                />
+                <Image
+                    src={bgVector2}
+                    alt="vector"
+                    width={500}
+                    height={500}
+                    className="absolute -right-60 -bottom-20 -z-50"
+                />
                 {hasInteracted ? (
                     messages.length > 0 ? (
                         <ul className="flex flex-col gap-3">
                             {messages.map((chatMessage) => {
-                                const bubbleClasses =
-                                    chatMessage.role === 'user'
-                                        ? 'bg-gradient-to-l from-[#00AFC2] to-[#62F5FF] text-white'
-                                        : 'bg-white text-slate-700 border border-[#00AFC2]/30';
-
                                 return (
-                                    <li key={chatMessage.id} className="flex justify-end">
-                                        <div className={`max-w-xl rounded-3xl px-4 py-2 text-sm shadow-lg ${bubbleClasses}`}>
-                                            {chatMessage.text}
+                                    <li key={chatMessage.id} className="flex justify-start items-start gap-3">
+                                        {/* User avatar on the right */}
+                                        <div className="bg-[#D9D9D9] rounded-full w-12 h-12 p-0.5 flex items-end justify-center ring-4 overflow-hidden flex-shrink-0">
+                                            <UserIcon className="w-9 h-9 overflow-hidden text-muted rounded-full" />
                                         </div>
+                                        <MessageBubble text={chatMessage.text} role={chatMessage.role} />
                                     </li>
-                                );
+                                )
                             })}
                         </ul>
                     ) : (
@@ -61,7 +75,7 @@ export const MainSection = () => {
                 )}
             </div>
 
-            <form onSubmit={handleSubmit} className="bg-white/10 p-6">
+            <form onSubmit={handleSubmit} className="bg-slate-800 p-6">
                 <div className="flex h-11 items-center gap-2">
                     <div className="flex h-12 flex-1 items-center gap-4 rounded-full border border-accent bg-input shadow-lg">
                         <button
@@ -84,5 +98,5 @@ export const MainSection = () => {
                 </div>
             </form>
         </main>
-    );
-};
+    )
+}

@@ -12,7 +12,7 @@ export const HomeHeader = () => {
     }
 
     return (
-        <header className="flex items-center justify-center border-b border-divider bg-white/10 px-6 backdrop-blur">
+        <header className="flex items-center justify-center border-b border-divider bg-slate-800 px-6 backdrop-blur">
             <ProgramDropdown className="w-xl" />
         </header>
     );

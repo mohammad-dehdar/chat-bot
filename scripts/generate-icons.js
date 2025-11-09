@@ -23,6 +23,20 @@ function toComponentName(filename) {
         .join('') + 'Icon';
 }
 
+// تابع برای تبدیل kebab-case به camelCase
+function kebabToCamel(str) {
+    return str.replace(/-([a-z])/g, (g) => g[1].toUpperCase());
+}
+
+// تابع برای تبدیل attribute های SVG به camelCase
+function convertAttributesToCamelCase(content) {
+    // تبدیل همه attribute های با خط تیره به camelCase
+    // این regex attribute های مثل fill-rule, clip-rule, stop-color, stroke-miterlimit و غیره را پیدا می‌کند
+    return content.replace(/(\w+(?:-\w+)+)=/g, (match) => {
+        return kebabToCamel(match);
+    });
+}
+
 // تابع برای parse کردن SVG
 function parseSVG(svgContent) {
     // استخراج viewBox
@@ -36,10 +50,13 @@ function parseSVG(svgContent) {
     const height = heightMatch ? heightMatch[1] : null;
     
     // استخراج محتوای داخلی SVG (بدون تگ <svg>)
-    const innerContent = svgContent
+    let innerContent = svgContent
         .replace(/<svg[^>]*>/i, '')
         .replace(/<\/svg>/i, '')
         .trim();
+    
+    // تبدیل attribute های kebab-case به camelCase
+    innerContent = convertAttributesToCamelCase(innerContent);
     
     // تبدیل fill به currentColor
     let processedContent = innerContent.replace(/fill=["'][^"']*["']/gi, 'fill="currentColor"');

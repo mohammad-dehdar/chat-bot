@@ -88,12 +88,12 @@ export const Sidebar = () => {
 
                 <Button
                     type="button"
-                    className={`flex w-full items-center gap-2 rounded-2xl bg-surface font-semibold shadow-sm transition-all duration-200 ${isOpen ? 'justify-start px-3 py-2' : 'justify-center p-2'
+                    className={`flex w-full text-xs items-center gap-2 rounded-sm bg-surface font-semibold shadow-sm transition-all duration-200 ${isOpen ? 'justify-start px-3 py-2' : 'justify-center p-2'
                         }`}
                     title="گفتگوی جدید"
                     icon={<AddIcon className="text-muted" />}
                 >
-                    {isOpen && <span>گفتگوی جدید</span>}
+                    {isOpen && <span>گفت و گو جدید</span>}
                 </Button>
             </div>
         </aside>

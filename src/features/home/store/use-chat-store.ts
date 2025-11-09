@@ -1,19 +1,5 @@
 import { create } from 'zustand';
-
-export type ChatMessageRole = 'user' | 'program';
-
-export interface ChatMessage {
-    id: string;
-    text: string;
-    role: ChatMessageRole;
-}
-
-interface ChatStoreState {
-    hasInteracted: boolean;
-    messages: ChatMessage[];
-    sendUserMessage: (text: string) => void;
-    sendProgramMessage: (label: string) => void;
-}
+import { ChatMessage, ChatMessageRole, ChatStoreState } from './types';
 
 const createMessage = (text: string, role: ChatMessageRole): ChatMessage => ({
     id: `${role}-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
