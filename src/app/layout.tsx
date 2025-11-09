@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import Script from 'next/script';
 import { iranSansX } from '@/config/fonts/fonts';
 import { env } from '@/config/env';
@@ -8,12 +8,13 @@ import './globals.css';
 export const metadata: Metadata = {
     title: 'asa-chat-bot',
     description: '',
-    viewport: {
-        minimumScale: 1,
-        initialScale: 1,
-        width: 'device-width',
-        userScalable: false,
-    },
+};
+
+export const viewport: Viewport = {
+    minimumScale: 1,
+    initialScale: 1,
+    width: 'device-width',
+    userScalable: false,
 };
 
 export default function RootLayout({

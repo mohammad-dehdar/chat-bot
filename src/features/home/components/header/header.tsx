@@ -9,7 +9,7 @@ export const HomeHeader = () => {
 
     return (
         <header className="flex items-center justify-center border-b border-divider bg-white/10 px-6 backdrop-blur">
-            <Dropdown label="" className='w-xl'>
+            <Dropdown className='w-xl'>
                 {/* کانتینر اصلی محتوا برای اعمال جلوه محوشوندگی */}
                 <div className="relative">
                     {/* این بخش شامل محتوای داخلی است و حالا Border Fade را دارد */}

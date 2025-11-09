@@ -4,7 +4,7 @@ export { ArrowLeftIcon } from "./ArrowLeftIcon";
 export { ArrowRightIcon } from "./ArrowRightIcon";
 export { AwakeBotIcon } from "./AwakeBotIcon";
 export { ChevronDownIcon } from "./ChevronDownIcon";
-export { DIcon } from "./DIcon";
+export { DIcon } from "./Dicon";
 export { Labroatory1Icon } from "./Labroatory1Icon";
 export { LabroatoryIcon } from "./LabroatoryIcon";
 export { SendMessageIcon } from "./SendMessageIcon";
