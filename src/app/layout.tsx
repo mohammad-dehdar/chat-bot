@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import type { Metadata } from 'next';
 import Script from 'next/script';
-import { dana, poppins } from '@/config/fonts/fonts';
+import { iranSansX } from '@/config/fonts/fonts';
 import { env } from '@/config/env';
 import './globals.css';
 
@@ -23,13 +23,13 @@ export default function RootLayout({
 }>) {
     return (
         <html
-            className={` ${dana.variable} ${poppins.variable} `}
+            className={`${iranSansX.variable}`}
             lang="fa"
             dir="rtl"
             data-scroll-behavior="smooth"
             suppressHydrationWarning
         >
-            <body className="antialiased">
+            <body className={`antialiased ${iranSansX.className}`}>
                 {env.NODE_ENV === 'development' && (
                     <Script
                         crossOrigin="anonymous"
