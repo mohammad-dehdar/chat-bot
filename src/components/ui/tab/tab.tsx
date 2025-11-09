@@ -73,7 +73,7 @@ export const Tab = ({
     return (
         <div className={className}>
             {/* نوار تب‌ها */}
-            <div className="flex items-center gap-2 mb-4 rounded-sm bg-white shadow-inner">
+            <div className="flex items-center gap-2 mb-2 rounded-sm h-9 bg-white shadow-inner">
                 {/* دکمه اسکرول چپ */}
                 <button
                     type="button"
@@ -81,7 +81,7 @@ export const Tab = ({
                     disabled={!canScrollLeft}
                     className={`
                         flex items-center justify-center
-                        w-4 h-10 rounded-r-sm
+                        w-4 h-full rounded-r-sm
                         bg-[#00AFC2] text-white
                         transition-opacity
                         disabled:opacity-30 disabled:cursor-not-allowed
@@ -108,11 +108,11 @@ export const Tab = ({
                                 onClick={() => setActiveId(item.id)}
                                 className={`
                                     px-4 py-2 rounded
-                                    text-xs font-medium
+                                    text-xs font-medium shadow-md
                                     transition-colors whitespace-nowrap
                                     ${isActive
-                                        ? "bg-[#00AFC2] text-white"
-                                        : "bg-gradient-to-t from-[#62F5FF] to-[#FFFFFF] text-slate-700"
+                                        ? "bg-gradient-to-t from-[#00AFC2] to-[#FFFFFF]"
+                                        : "bg-gradient-to-t from-[#62F5FF] to-[#FFFFFF]"
                                     }
                                     ${tabClassName || ""}
                                 `}
@@ -130,7 +130,7 @@ export const Tab = ({
                     disabled={!canScrollRight}
                     className={`
                         flex items-center justify-center
-                        w-4 h-10 rounded-l-sm
+                        w-4 h-full rounded-l-sm
                         bg-[#00AFC2] text-white
                         transition-opacity
                         disabled:opacity-30 disabled:cursor-not-allowed
@@ -143,7 +143,7 @@ export const Tab = ({
             </div>
 
             {/* محتوای تب فعال */}
-            <div className={`${contentClassName || ""} rounded-sm bg-white shadow-inner`}>
+            <div className={`${contentClassName || ""} rounded-sm h-28 bg-[#F9FAFB] shadow-inner`}>
                 {activeTab ? (
                     activeTab.content
                 ) : (

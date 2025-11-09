@@ -1,22 +1,38 @@
 import localFont from 'next/font/local';
 
-export const dana = localFont({
+export const iranSansX = localFont({
   src: [
     {
-      path: './woff2/DanaVF.woff2',
+      path: './iran-sans/IRANSansX-UltraLight.woff',
+      weight: '100',
+      style: 'normal',
+    },
+    {
+      path: './iran-sans/IRANSansX-Light.woff',
+      weight: '300',
+      style: 'normal',
+    },
+    {
+      path: './iran-sans/IRANSansX-Regular.woff',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: './iran-sans/IRANSansX-Medium.woff',
+      weight: '500',
+      style: 'normal',
+    },
+    {
+      path: './iran-sans/IRANSansX-DemiBold.woff',
+      weight: '600',
+      style: 'normal',
+    },
+    {
+      path: './iran-sans/IRANSansX-Bold.woff',
+      weight: '700',
       style: 'normal',
     },
   ],
-  variable: '--font-dana',
-  display: 'swap',
-});
-export const poppins = localFont({
-  src: [
-    {
-      path: './ttf/Poppins-Regular.ttf',
-      style: 'normal',
-    },
-  ],
-  variable: '--font-poppins',
+  variable: '--font-iran-sans-x',
   display: 'swap',
 });

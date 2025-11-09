@@ -14,8 +14,9 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-iran-sans-x);
   --font-mono: var(--font-geist-mono);
+  --font-iran-sans-x: var(--font-iran-sans-x);
 }
 
 @layer base {
@@ -47,6 +48,6 @@
 body {
   background: linear-gradient(to bottom, #001b38, #000d1e);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-iran-sans-x), Arial, Helvetica, sans-serif;
   min-height: 100vh;
 }

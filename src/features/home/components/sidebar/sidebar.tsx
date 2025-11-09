@@ -1,7 +1,7 @@
 'use client';
 
 import { Button, Input } from '@/components/ui';
-import { AddIcon, Dicon, SearchIcon } from '@icon';
+import { AddIcon, DIcon, SendMessageIcon } from '@icon';
 import { useEffect, useRef, useState } from 'react';
 
 export const Sidebar = () => {
@@ -42,7 +42,7 @@ export const Sidebar = () => {
                     className="p-2 rounded-lg transition-colors hover:bg-surface"
                     aria-label={isOpen ? 'بستن سایدبار' : 'باز کردن سایدبار'}
                     type="button"
-                    icon={<Dicon />}
+                    icon={<DIcon />}
                 />
             </div>
 
@@ -52,7 +52,7 @@ export const Sidebar = () => {
                         className={`flex items-center gap-2 rounded-2xl bg-surface shadow-sm transition-all duration-200 ${isOpen ? 'px-3 py-2' : 'justify-center p-2'
                             }`}
                     >
-                        <SearchIcon className="text-muted" />
+                        <SendMessageIcon className="text-muted" />
                         {isOpen && (
                             <Input
                                 type="text"

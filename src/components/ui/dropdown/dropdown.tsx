@@ -1,16 +1,8 @@
 "use client"
 
-import { useEffect, useRef, useState, type ReactNode } from "react"
-
-export interface DropdownProps {
-    label: ReactNode // این لیبل دیگر نمایش داده نمی‌شود اما در تعریف باقی می‌ماند
-    children: ReactNode
-    className?: string
-    buttonClassName?: string // برای دکمه باز و بسته کردن
-    panelClassName?: string // برای پنل محتوا
-    contentClassName?: string // برای محتوای داخلی پنل
-    onClose?: () => void
-}
+import { useEffect, useRef, useState } from "react"
+import { DropdownProps } from "./type"
+import { ChevronDownIcon } from "@icon"
 
 export const Dropdown = ({
     children,
@@ -23,11 +15,9 @@ export const Dropdown = ({
     const [isOpen, setIsOpen] = useState(false)
     const containerRef = useRef<HTMLDivElement | null>(null)
 
-    // منطق بسته شدن با کلیک خارج از منو
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
             const target = event.target as Node
-            // فقط زمانی که باز است و خارج از کلیک می‌شود، بسته شود
             if (isOpen && containerRef.current && !containerRef.current.contains(target)) {
                 setIsOpen(false)
                 onClose?.()
@@ -38,7 +28,6 @@ export const Dropdown = ({
         return () => document.removeEventListener("mousedown", handleClickOutside)
     }, [isOpen, onClose])
 
-    // منطق بسته شدن با کلید Escape
     useEffect(() => {
         const handleEscape = (event: KeyboardEvent) => {
             if (event.key === "Escape" && isOpen) {
@@ -55,64 +44,31 @@ export const Dropdown = ({
         setIsOpen((prev) => !prev)
     }
 
-    // کلاس‌دهی برای کانتینر اصلی
-    const containerClassName = ["relative rounded-sm w-full overflow-hidden bg-white", className,
-        // اعمال shadow و glow برای حالت باز
-        isOpen ? "shadow-lg shadow-blue-200/50" : "shadow-md"
-    ].filter(Boolean).join(" ")
-
-    // کلاس‌دهی برای پنل محتوا (برای اسلاید کشویی)
-    const panelClassNames = [
-        "overflow-hidden transition-all duration-300 ease-in-out origin-top",
-        // max-h-screen/max-h-0 برای ایجاد انیمیشن کشویی
-        isOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0",
-        panelClassName,
-    ]
-        .filter(Boolean)
-        .join(" ")
-
-    // کلاس‌دهی برای محتوای داخلی پنل
-    const contentClasses = ["w-full p-1 pb-0", contentClassName].filter(Boolean).join(" ")
-
-    // کلاس‌دهی برای دکمه باز و بسته کردن (که حالا همیشه در پایین محتوا قرار می‌گیرد)
-    const triggerClassName = [
-        "flex bg-sidebar items-center justify-center w-full py-2  transition-colors",
-        "hover:text-white",
-        isOpen ? "" : "border",
-        "text-slate-700 font-medium",
-        buttonClassName,
-    ].filter(Boolean).join(" ")
-
-
     return (
-        // containerRef روی کانتینر اصلی است
-        <div ref={containerRef} className={containerClassName}>
-            {/* 1. محتوای منو (پنل کشویی) */}
-            <div className={panelClassNames}>
-                <div className={contentClasses}>
-                    <div>{children}</div>
-                </div>
-            </div>
-
-            {/* 2. دکمه باز و بسته کردن (حالا همیشه در پایین محتوا قرار می‌گیرد) */}
-            <div className="mx-1">
-                <button
-                    type="button"
-                    onClick={toggleDropdown}
-                    className={triggerClassName}
-                    aria-haspopup="menu"
-                    aria-expanded={isOpen}
+        <div
+            ref={containerRef}
+            className={`relative rounded-sm w-full overflow-hidden bg-white drop-shadow-md transition-all duration-500 ease-in-out ${isOpen ? "drop-shadow-[#00FFEA]/90" : "drop-shadow-white/50"} ${className || ""}`}
+        >
+            <div className="bg-sidebar m-2 border border-b-0 rounded-t-sm"> 
+                <div
+                    className={`overflow-hidden transition-all duration-300 ease-in-out origin-top ${isOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"} ${panelClassName || ""}`}
                 >
-                    {/* آیکون برای نشان دادن جهت (بالا برای بستن، پایین برای باز کردن) */}
-                    <svg
-                        className={`h-5 w-5 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
+                    <div className={`w-full p-1 pb-0 ${contentClassName || ""}`}>
+                        <div>{children}</div>
+                    </div>
+                </div>
+
+                <div className="mx-1">
+                    <button
+                        type="button"
+                        onClick={toggleDropdown}
+                        className={`flex bg-gradien items-center justify-center w-full pb-2 transition-colors  ${isOpen ? "" : "pt-2"} text-slate-700 font-medium ${buttonClassName || ""}`}
+                        aria-haspopup="menu"
+                        aria-expanded={isOpen}
                     >
-                        {/* آیکون فلش رو به پایین */}
-                        <path d="M7 10l5 5 5-5z" />
-                    </svg>
-                </button>
+                        <ChevronDownIcon className={`h-5 w-5 text-[#250066] transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`} />
+                    </button>
+                </div>
             </div>
         </div>
     )
