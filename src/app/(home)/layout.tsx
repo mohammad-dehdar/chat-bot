@@ -1,8 +1,7 @@
-import HomeLayout from '@/features/home/layout';
-import type { ReactNode } from 'react';
+import type { PropsWithChildren } from 'react';
 
-const HomeRouteLayout = ({ children }: { children: ReactNode }) => {
-    return <HomeLayout>{children}</HomeLayout>;
+const HomeLayout = ({ children }: PropsWithChildren) => {
+    return <div className="flex h-screen overflow-hidden">{children}</div>;
 };
 
-export default HomeRouteLayout;
+export default HomeLayout;

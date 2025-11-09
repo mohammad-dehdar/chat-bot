@@ -3,7 +3,7 @@
 import { Input } from '@/components/ui';
 import { SendMessageIcon } from '@icon';
 
-import { HomeHeader } from './header';
+import { HomeHeader } from '../header';
 
 export const MainSection = () => {
     return (
