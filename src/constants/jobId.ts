@@ -1,8 +1,11 @@
 // Authentication
 export const AUTH_JobId = 26;
 
-// First reload job-id (to get the actual initial job-id)
-export const FIRST_RELOAD_JobId = 28;
+// Initial bootstrap request (role based dashboard payload)
+export const FIRST_RELOAD_JobId = 13;
 
-// Initial job-id for first reload (received from job-id 28)
-export const INITIAL_JobId = 6483;
+// Field key used to send the allowed role codes to the initial request
+export const ROLE_CODES_FIELD_KEY = "6461";
+
+// Storage key for persisting manually provided role codes
+export const ROLE_CODES_STORAGE_KEY = "roleCodes";

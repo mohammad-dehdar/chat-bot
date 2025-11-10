@@ -16,6 +16,7 @@ export interface ApiResponse {
   error: boolean;
   data?: unknown;
   message?: string;
+  token?: string;
 }
 
 async function retryRequest<T>(
