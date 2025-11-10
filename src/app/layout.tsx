@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from 'next';
 import Script from 'next/script';
 import { iranSansX } from '@/config/fonts/fonts';
 import { env } from '@/config/env';
+import Providers from './providers/Providers';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -38,7 +39,10 @@ export default function RootLayout({
                         strategy="afterInteractive"
                     />
                 )}
-                {children}
+                {/* App Providers */}
+                {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+                {/* @ts-ignore - RoleProvider is a Client Component used in a Server layout */}
+                <Providers>{children}</Providers>
             </body>
         </html>
     );

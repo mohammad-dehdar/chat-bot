@@ -22,7 +22,8 @@
       "@/*": ["./src/*"],
       "@icon": ["./src/components/shared/icons"],
       "@icon/*": ["./src/components/shared/icons/*"],
-      "zustand": ["./src/lib/zustand"]
+      "zustand": ["./src/lib/zustand"],
+      "js-cookie": ["./src/vendor/js-cookie"]
     }
   },
   "include": [
@@ -31,7 +32,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
-    "**/*.mts"
+    "**/*.mts",
+    "src/config/config.js"
   ],
   "exclude": ["node_modules"]
 }
