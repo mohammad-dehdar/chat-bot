@@ -8,11 +8,11 @@ export interface ChatMessage {
 }
 
 export interface ChatStoreState {
-    hasInteracted: boolean;
-    messages: ChatMessage[];
-    _createMessage: (text: string, role: ChatMessageRole) => ChatMessage;
-    sendUserMessage: (text: string) => void;
-    sendProgramMessage: (label: string) => void;
-    clearMessages: () => void;
-    deleteMessage: (id: string) => void;
+  hasInteracted: boolean;
+  messages: ChatMessage[];
+  _createMessage: (text: string, role: ChatMessageRole) => ChatMessage;
+  sendUserMessage: (text: string) => void;
+  sendProgramMessage: (label: string) => void;
+  clearMessages: () => void;
+  deleteMessage: (id: string) => void;
 }

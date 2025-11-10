@@ -1,2 +1,2 @@
-export * from "./message-bubble"
-export * from "./type"
+export * from "./message-bubble";
+export * from "./type";
