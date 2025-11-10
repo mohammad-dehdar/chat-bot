@@ -71,11 +71,17 @@ export async function request<TResponse = unknown>({
     typeof window !== "undefined"
       ? (window as unknown as { GWT?: string }).GWT
       : undefined;
-  if (maybeGwt) {
-    formData.append("gwt", maybeGwt);
+  const gwtToSend = maybeGwt || env.GWT;
+  if (gwtToSend) {
+    formData.append("gwt", gwtToSend);
   }
 
-  const response = await fetch(env.API_URL, {
+  const base = env.API_URL.replace(/\/+$/, "");
+  const endpoint = /\/EGW\/?$/.test(base)
+    ? `${base.replace(/\/+$/, "")}/`
+    : `${base}/EGW/`;
+
+  const response = await fetch(endpoint, {
     method: "POST",
     body: formData,
     signal,

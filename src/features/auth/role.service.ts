@@ -1,4 +1,4 @@
-import { env } from "@/config/env";
+import { request } from "@/services/request";
 
 export type RoleCode = string | null;
 
@@ -9,27 +9,24 @@ export interface FetchRoleResult {
 
 export async function defaultFetchRole(): Promise<FetchRoleResult> {
   try {
-    const response = await fetch(`${env.API_URL}/role`, {
-      method: "GET",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-      },
+    // Legacy-compatible: POST to /EGW/ with FormData { detail, jobId=27, token, gwt }
+    const res = await request<{
+      error?: boolean;
+      data?: Record<string, unknown>;
+    }>({
+      jobId: 27,
     });
-
-    if (!response.ok) {
+    if (res && (res as any).error === false) {
+      const code = res.data?.["6639"];
       return {
-        roleCode: null,
-        error: `Request failed with status ${response.status}`,
+        roleCode: typeof code === "string" ? code : String(code ?? "") || null,
       };
     }
-
-    const data = (await response.json()) as unknown;
-    // Expecting { roleCode: string } or similar. Fallbacks if backend differs.
-    const code =
-      // @ts-expect-error runtime shape depends on backend
-      (data && (data.roleCode ?? data.code ?? data["6639"])) ?? null;
-    return { roleCode: typeof code === "string" ? code : null };
+    // If backend does not send error flag, still try to parse
+    const code = res?.data?.["6639"];
+    return {
+      roleCode: typeof code === "string" ? code : String(code ?? "") || null,
+    };
   } catch (error) {
     return {
       roleCode: null,

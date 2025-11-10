@@ -25,11 +25,15 @@ export default function checkToken(options: CheckTokenOptions) {
   const { type, authJobId, onResult, testToken } = options;
 
   if (type === "development") {
-    if (testToken) {
+    const devToken =
+      testToken ||
+      // Allow env-based configuration for local development
+      process.env.NEXT_PUBLIC_DEV_TOKEN;
+    if (devToken) {
       // write token to cookies (primary) and localStorage (compat)
-      Cookies.set("token", testToken, cookieOptions());
+      Cookies.set("token", devToken, cookieOptions());
       try {
-        localStorage.setItem("token", testToken);
+        localStorage.setItem("token", devToken);
       } catch {}
       onResult?.(true);
       return;
