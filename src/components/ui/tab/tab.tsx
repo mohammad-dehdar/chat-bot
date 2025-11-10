@@ -1,9 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { TabProps } from "./types";
 import { ArrowRightIcon } from "@/components/shared/icons";
-
 
 export const Tab = ({
     items,
@@ -19,57 +18,69 @@ export const Tab = ({
     const scrollContainerRef = useRef<HTMLDivElement>(null);
     const [canScrollLeft, setCanScrollLeft] = useState(false);
     const [canScrollRight, setCanScrollRight] = useState(false);
+    const resizeObserverRef = useRef<ResizeObserver | null>(null);
 
     const activeTab = items.find((item) => item.id === activeId);
 
-    // بررسی امکان اسکرول
-    const checkScrollability = () => {
+    // ✅ استفاده از useCallback برای بهینه‌سازی
+    const checkScrollability = useCallback(() => {
         if (!scrollContainerRef.current) return;
 
         const container = scrollContainerRef.current;
         setCanScrollLeft(container.scrollLeft > 0);
         setCanScrollRight(
-            container.scrollLeft < container.scrollWidth - container.clientWidth
+            container.scrollLeft < container.scrollWidth - container.clientWidth - 1
         );
-    };
+    }, []);
 
-    // بررسی اسکرول در mount و تغییر items
+    // ✅ مدیریت بهتر ResizeObserver
     useEffect(() => {
-        const checkScroll = () => {
-            if (!scrollContainerRef.current) return;
-            const container = scrollContainerRef.current;
-            setCanScrollLeft(container.scrollLeft > 0);
-            setCanScrollRight(
-                container.scrollLeft < container.scrollWidth - container.clientWidth
-            );
-        };
-
-        checkScroll();
         const container = scrollContainerRef.current;
-        if (container) {
-            const resizeObserver = new ResizeObserver(checkScroll);
-            resizeObserver.observe(container);
-            return () => resizeObserver.disconnect();
-        }
-    }, [items]);
+        if (!container) return;
 
-    // اسکرول به چپ
-    const scrollLeft = () => {
+        checkScrollability();
+
+        // ✅ Cleanup قبلی observer
+        if (resizeObserverRef.current) {
+            resizeObserverRef.current.disconnect();
+        }
+
+        // ✅ ایجاد observer جدید
+        resizeObserverRef.current = new ResizeObserver(() => {
+            checkScrollability();
+        });
+
+        resizeObserverRef.current.observe(container);
+
+        // ✅ Cleanup در unmount
+        return () => {
+            if (resizeObserverRef.current) {
+                resizeObserverRef.current.disconnect();
+                resizeObserverRef.current = null;
+            }
+        };
+    }, [items, checkScrollability]);
+
+    // ✅ استفاده از useCallback برای scroll functions
+    const scrollLeft = useCallback(() => {
         if (scrollContainerRef.current) {
             scrollContainerRef.current.scrollBy({ left: -200, behavior: "smooth" });
-            // بررسی وضعیت پس از اسکرول
             setTimeout(checkScrollability, 300);
         }
-    };
+    }, [checkScrollability]);
 
-    // اسکرول به راست
-    const scrollRight = () => {
+    const scrollRight = useCallback(() => {
         if (scrollContainerRef.current) {
             scrollContainerRef.current.scrollBy({ left: 200, behavior: "smooth" });
-            // بررسی وضعیت پس از اسکرول
             setTimeout(checkScrollability, 300);
         }
-    };
+    }, [checkScrollability]);
+
+    // ✅ مدیریت بهتر tab selection
+    const handleTabSelect = useCallback((item: typeof items[0]) => {
+        setActiveId(item.id);
+        onSelect?.(item);
+    }, [onSelect]);
 
     return (
         <div className={className}>
@@ -106,10 +117,7 @@ export const Tab = ({
                             <button
                                 key={item.id}
                                 type="button"
-                                onClick={() => {
-                                    setActiveId(item.id);
-                                    onSelect?.(item);
-                                }}
+                                onClick={() => handleTabSelect(item)}
                                 className={`
                                     px-4 py-2 rounded
                                     text-xs font-medium shadow-md
@@ -120,6 +128,8 @@ export const Tab = ({
                                     }
                                     ${tabClassName || ""}
                                 `}
+                                aria-selected={isActive}
+                                role="tab"
                             >
                                 {item.label}
                             </button>
@@ -147,13 +157,15 @@ export const Tab = ({
             </div>
 
             {/* محتوای تب فعال */}
-            <div className={`${contentClassName || ""} rounded-sm h-28 bg-[#F9FAFB] shadow-inner`}>
+            <div
+                className={`${contentClassName || ""} rounded-sm h-28 bg-[#F9FAFB] shadow-inner`}
+                role="tabpanel"
+            >
                 {activeTab ? (
                     activeTab.content
                 ) : (
-                    <p className="text-center text-slate-600">
-                        برای نمایش اطلاعات برنامه درمانی از نوار بالا، یکی از برنامه
-                        ها را انتخاب کنید
+                    <p className="text-center text-slate-600 p-4">
+                        برای نمایش اطلاعات برنامه درمانی از نوار بالا، یکی از برنامه‌ها را انتخاب کنید
                     </p>
                 )}
             </div>

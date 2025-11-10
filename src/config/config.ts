@@ -1,19 +1,19 @@
 export const getBaseURL = (): string => {
   if (typeof window === "undefined") {
-    return "https://self-declaration.salamatehr.ir/EGW/";
+    return "https://salamatehr.ir/IGW/";
   }
   const origin = window.location.origin.includes("localhost")
-    ? "https://self-declaration.salamatehr.ir"
+    ? "https://salamatehr.ir"
     : window.location.origin.toString();
-  return `${origin}/EGW/`;
+  return `${origin}/IGW/`;
 };
 
 export const getFileURL = (): string => {
   if (typeof window === "undefined") {
-    return "https://self-declaration.salamatehr.ir/";
+    return "https://salamatehr.ir/";
   }
   const origin = window.location.origin.includes("localhost")
-    ? "https://self-declaration.salamatehr.ir"
+    ? "https://salamatehr.ir"
     : window.location.origin.toString();
   return `${origin}/`;
 };

@@ -8,7 +8,7 @@ export default function checkToken(
   type: string,
   callback: (isAuthorized: boolean | string) => void
 ): void {
-  if (type === "productions") {
+  if (type === "development") {
     localStorage.setItem("token", TEST_TOKEN);
     callback(true);
   } else {
