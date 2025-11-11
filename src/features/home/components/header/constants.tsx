@@ -6,7 +6,7 @@ export const getTabItems = (): TabItem[] => [
         label: 'بهبود وضعیت تغذیه',
         content: (
             <div className="p-4">
-                <p className="text-slate-700">محتوای برنامه بهبود وضعیت تغذیه</p>
+                <p className="text-foreground">محتوای برنامه بهبود وضعیت تغذیه</p>
             </div>
         ),
     },
@@ -15,7 +15,7 @@ export const getTabItems = (): TabItem[] => [
         label: 'رژیم درمانی',
         content: (
             <div className="p-4">
-                <p className="text-slate-700">محتوای برنامه رژیم درمانی</p>
+                <p className="text-foreground">محتوای برنامه رژیم درمانی</p>
             </div>
         ),
     },

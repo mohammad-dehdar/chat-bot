@@ -54,8 +54,7 @@ export const MainSection = () => {
                             {messages.map((chatMessage) => {
                                 return (
                                     <li key={chatMessage.id} className="flex justify-start items-start gap-3">
-                                        {/* User avatar on the right */}
-                                        <div className="bg-[#D9D9D9] rounded-full w-12 h-12 p-0.5 flex items-end justify-center ring-4 overflow-hidden flex-shrink-0">
+                                        <div className="bg-surface-muted rounded-full w-12 h-12 p-0.5 flex items-end justify-center ring-4 ring-accent/20 overflow-hidden flex-shrink-0">
                                             <UserIcon className="w-9 h-9 overflow-hidden text-muted rounded-full" />
                                         </div>
                                         <MessageBubble text={chatMessage.text} role={chatMessage.role} />
@@ -75,12 +74,12 @@ export const MainSection = () => {
                 )}
             </div>
 
-            <form onSubmit={handleSubmit} className="bg-slate-800 p-6">
+            <form onSubmit={handleSubmit} className="bg-foreground/5 backdrop-blur-sm border-t border-divider p-6">
                 <div className="flex h-11 items-center gap-2">
                     <div className="flex h-12 flex-1 items-center gap-4 rounded-full border border-accent bg-input shadow-lg">
                         <button
                             type="submit"
-                            className="rounded-full bg-white/10 p-4 transition-colors hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60 disabled:cursor-not-allowed disabled:opacity-60"
+                            className="rounded-full bg-foreground/10 p-4 transition-colors hover:bg-foreground/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60 disabled:cursor-not-allowed disabled:opacity-60"
                             aria-label="ارسال پیام"
                             disabled={!canSendMessage}
                         >
@@ -90,7 +89,7 @@ export const MainSection = () => {
                             type="text"
                             value={message}
                             onChange={(event) => setMessage(event.target.value)}
-                            className="flex-1 bg-transparent pr-4 text-right text-slate-900 placeholder:text-muted"
+                            className="flex-1 bg-transparent pr-4 text-right text-foreground placeholder:text-muted"
                             placeholder="پیام خود را بنویسید..."
                             dir="rtl"
                         />

@@ -47,9 +47,9 @@ export const Dropdown = ({
     return (
         <div
             ref={containerRef}
-            className={`relative rounded-sm w-full overflow-hidden bg-white drop-shadow-md transition-all duration-500 ease-in-out ${isOpen ? "drop-shadow-[#00FFEA]/90" : "drop-shadow-white/50"} ${className || ""}`}
+            className={`relative rounded-sm w-full overflow-hidden bg-background drop-shadow-md transition-all duration-500 ease-in-out ${isOpen ? "shadow-accent/30 shadow-lg" : "shadow-background/50"} ${className || ""}`}
         >
-            <div className="bg-gradient-to-b from-[#E0F2F1] border border-slate-300 shadow-md border-b-0 to-[#D9E9F0] m-1 rounded-t-sm relative">
+            <div className="bg-sidebar m-1 rounded-t-sm relative border border-divider shadow-md border-b-0">
                 <div
                     className={`overflow-hidden transition-all duration-300 ease-in-out origin-top ${isOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"} ${panelClassName || ""}`}
                 >
@@ -62,11 +62,11 @@ export const Dropdown = ({
                     <button
                         type="button"
                         onClick={toggleDropdown}
-                        className={`flex bg-gradien items-center justify-center w-full pb-2 transition-colors  ${isOpen ? "" : "pt-2"} text-slate-700 font-medium ${buttonClassName || ""}`}
+                        className={`flex items-center justify-center w-full pb-2 transition-colors ${isOpen ? "" : "pt-2"} text-foreground font-medium ${buttonClassName || ""}`}
                         aria-haspopup="menu"
                         aria-expanded={isOpen}
                     >
-                        <ChevronDownIcon className={`h-5 w-5 text-[#250066] transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`} />
+                        <ChevronDownIcon className={`h-5 w-5 text-accent transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`} />
                     </button>
                 </div>
             </div>

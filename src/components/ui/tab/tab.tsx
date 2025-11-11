@@ -22,7 +22,6 @@ export const Tab = ({
 
     const activeTab = items.find((item) => item.id === activeId);
 
-    // بررسی امکان اسکرول
     const checkScrollability = () => {
         if (!scrollContainerRef.current) return;
 
@@ -33,7 +32,6 @@ export const Tab = ({
         );
     };
 
-    // بررسی اسکرول در mount و تغییر items
     useEffect(() => {
         const checkScroll = () => {
             if (!scrollContainerRef.current) return;
@@ -53,47 +51,33 @@ export const Tab = ({
         }
     }, [items]);
 
-    // اسکرول به چپ
     const scrollLeft = () => {
         if (scrollContainerRef.current) {
             scrollContainerRef.current.scrollBy({ left: -200, behavior: "smooth" });
-            // بررسی وضعیت پس از اسکرول
             setTimeout(checkScrollability, 300);
         }
     };
 
-    // اسکرول به راست
     const scrollRight = () => {
         if (scrollContainerRef.current) {
             scrollContainerRef.current.scrollBy({ left: 200, behavior: "smooth" });
-            // بررسی وضعیت پس از اسکرول
             setTimeout(checkScrollability, 300);
         }
     };
 
     return (
         <div className={className}>
-            {/* نوار تب‌ها */}
-            <div className="flex items-center gap-2 mb-2 rounded-sm h-9 bg-white shadow-inner">
-                {/* دکمه اسکرول چپ */}
+            <div className="flex items-center gap-2 mb-2 rounded-sm h-9 bg-background shadow-inner">
                 <button
                     type="button"
                     onClick={scrollLeft}
                     disabled={!canScrollLeft}
-                    className={`
-                        flex items-center justify-center
-                        w-4 h-full rounded-r-sm
-                        bg-[#00AFC2] text-white
-                        transition-opacity
-                        disabled:opacity-30 disabled:cursor-not-allowed
-                        hover:bg-teal-600
-                    `}
+                    className="flex items-center justify-center w-4 h-full rounded-r-sm bg-accent text-background transition-opacity disabled:opacity-30 disabled:cursor-not-allowed hover:opacity-80"
                     aria-label="اسکرول به چپ"
                 >
                     <ArrowRightIcon className="w-2 h-2" />
                 </button>
 
-                {/* کانتینر اسکرول‌پذیر تب‌ها */}
                 <div
                     ref={scrollContainerRef}
                     onScroll={checkScrollability}
@@ -110,16 +94,10 @@ export const Tab = ({
                                     setActiveId(item.id);
                                     onSelect?.(item);
                                 }}
-                                className={`
-                                    px-4 py-2 rounded
-                                    text-xs font-medium shadow-md
-                                    transition-colors whitespace-nowrap
-                                    ${isActive
-                                        ? "bg-gradient-to-t from-[#00AFC2] to-[#FFFFFF]"
-                                        : "bg-gradient-to-t from-[#62F5FF] to-[#FFFFFF]"
-                                    }
-                                    ${tabClassName || ""}
-                                `}
+                                className={`px-4 py-2 rounded text-xs font-medium shadow-md transition-all whitespace-nowrap ${isActive
+                                        ? "bg-accent/20 border border-accent text-foreground"
+                                        : "bg-surface text-foreground hover:bg-accent/10"
+                                    } ${tabClassName || ""}`}
                             >
                                 {item.label}
                             </button>
@@ -127,33 +105,23 @@ export const Tab = ({
                     })}
                 </div>
 
-                {/* دکمه اسکرول راست */}
                 <button
                     type="button"
                     onClick={scrollRight}
                     disabled={!canScrollRight}
-                    className={`
-                        flex items-center justify-center
-                        w-4 h-full rounded-l-sm
-                        bg-[#00AFC2] text-white
-                        transition-opacity
-                        disabled:opacity-30 disabled:cursor-not-allowed
-                        hover:bg-teal-600
-                    `}
+                    className="flex items-center justify-center w-4 h-full rounded-l-sm bg-accent text-background transition-opacity disabled:opacity-30 disabled:cursor-not-allowed hover:opacity-80"
                     aria-label="اسکرول به راست"
                 >
                     <ArrowRightIcon className="w-2 h-2 rotate-180" />
                 </button>
             </div>
 
-            {/* محتوای تب فعال */}
-            <div className={`${contentClassName || ""} rounded-sm h-28 bg-[#F9FAFB] shadow-inner`}>
+            <div className={`${contentClassName || ""} rounded-sm h-28 bg-surface shadow-inner`}>
                 {activeTab ? (
                     activeTab.content
                 ) : (
-                    <p className="text-center text-slate-600">
-                        برای نمایش اطلاعات برنامه درمانی از نوار بالا، یکی از برنامه
-                        ها را انتخاب کنید
+                    <p className="text-center text-muted p-4">
+                        برای نمایش اطلاعات برنامه درمانی از نوار بالا، یکی از برنامه‌ها را انتخاب کنید
                     </p>
                 )}
             </div>

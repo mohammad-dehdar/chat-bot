@@ -21,9 +21,7 @@
     "paths": {
       "@/*": ["./src/*"],
       "@icon": ["./src/components/shared/icons"],
-      "@icon/*": ["./src/components/shared/icons/*"],
-      "zustand": ["./src/lib/zustand"],
-      "js-cookie": ["./src/vendor/js-cookie"]
+      "@icon/*": ["./src/components/shared/icons/*"]
     }
   },
   "include": [
