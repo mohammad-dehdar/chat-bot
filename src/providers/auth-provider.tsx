@@ -40,12 +40,14 @@ export function AuthProvider({
         reset,
     } = useAuthStore();
 
+    const { mode, authJobId, devToken } = config;
+
     useEffect(() => {
         if (!autoAuth || isLoading || isAuthenticated) return;
 
         const runAuth = async () => {
             setLoading(true);
-            const result = await authenticate(config);
+            const result = await authenticate({ mode, authJobId, devToken });
 
             if (result.success) {
                 setAuthenticated(true);
@@ -56,7 +58,17 @@ export function AuthProvider({
         };
 
         void runAuth();
-    }, [autoAuth, config, isAuthenticated, isLoading, setAuthenticated, setError, setLoading]);
+    }, [
+        autoAuth,
+        isAuthenticated,
+        isLoading,
+        mode,
+        authJobId,
+        devToken,
+        setAuthenticated,
+        setError,
+        setLoading,
+    ]);
 
     const logout = useCallback(() => {
         clearAuth();
