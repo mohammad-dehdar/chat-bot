@@ -3,7 +3,7 @@ import type { Metadata, Viewport } from 'next';
 import Script from 'next/script';
 import { iranSansX } from '@/config/fonts/fonts';
 import { env } from '@/config/env';
-import Providers from './providers/Providers';
+import Providers from '../provider/Providers';
 import './globals.css';
 
 export const metadata: Metadata = {

@@ -1,6 +1,6 @@
-import { ChatMessageRole } from "@/features/home/store/types"
+import { ChatMessageRole } from "@/app/(home)/state/chat-store";
 
 export interface MessageBubbleProps {
-    text: string
-    role: ChatMessageRole
+    text: string;
+    role: ChatMessageRole;
   }
