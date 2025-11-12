@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Button, Input } from '@/components/ui';
-import { AddIcon, DIcon, SendMessageIcon } from '@icon';
+import { AddIcon, DIcon, SearchIcon, SendMessageIcon } from '@icon';
 
 const sidebarVariants = {
   open: { width: 240 },
@@ -76,7 +76,7 @@ export function Sidebar() {
             transition={{ duration: 0.3, ease: 'easeOut' }}
           >
             <motion.span animate={{ rotate: isOpen ? 0 : -15 }} transition={{ duration: 0.3, ease: 'easeOut' }}>
-              <SendMessageIcon className="text-muted" />
+              <SearchIcon className="text-muted" />
             </motion.span>
             <AnimatePresence initial={false} mode="popLayout">
               {isOpen && (
