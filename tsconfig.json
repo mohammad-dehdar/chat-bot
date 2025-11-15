@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "ES2017",
     "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
+    "allowJs": false,
     "skipLibCheck": true,
     "strict": true,
     "noEmit": true,
@@ -19,9 +19,7 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"],
-      "@icon": ["./src/components/shared/icons"],
-      "@icon/*": ["./src/components/shared/icons/*"]
+      "@/*": ["./src/*"]
     }
   },
   "include": [
@@ -29,9 +27,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    ".next/dev/types/**/*.ts",
-    "**/*.mts",
-    "src/config/config.js"
+    ".next/dev/types/**/*.ts"
   ],
   "exclude": ["node_modules"]
 }
