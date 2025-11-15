@@ -2,7 +2,7 @@
 
 import type { PropsWithChildren } from 'react';
 import { RoleProvider } from '@/lib/auth/RoleContext';
-import { DataProvider } from '@/features/data/DataContext';
+import { DataProvider } from '@/store/DataContext';
 
 const Providers = ({ children }: PropsWithChildren) => {
     return (
