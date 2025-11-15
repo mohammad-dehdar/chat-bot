@@ -3,8 +3,8 @@ const fs = require('fs');
 const path = require('path');
 
 // مسیرهای ورودی و خروجی
-const SVG_DIR = path.join(__dirname, '../src/assets/icons');
-const OUTPUT_DIR = path.join(__dirname, '../src/components/shared/icons');
+const SVG_DIR = path.join(__dirname, '../src/shared/assets/icons');
+const OUTPUT_DIR = path.join(__dirname, '../src/shared/ui/icons');
 const INDEX_FILE = path.join(OUTPUT_DIR, 'index.ts');
 
 // اطمینان از وجود پوشه خروجی

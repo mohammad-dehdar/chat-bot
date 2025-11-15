@@ -20,8 +20,8 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "@icon": ["./src/components/shared/icons"],
-      "@icon/*": ["./src/components/shared/icons/*"]
+      "@icon": ["./src/shared/ui/icons"],
+      "@icon/*": ["./src/shared/ui/icons/*"]
     }
   },
   "include": [
@@ -30,8 +30,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
-    "**/*.mts",
-    "src/config/config.js"
+    "**/*.mts"
   ],
   "exclude": ["node_modules"]
 }
