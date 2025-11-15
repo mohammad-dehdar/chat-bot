@@ -16,7 +16,11 @@ const springConfig = {
   damping: 28,
 };
 
-export function Sidebar() {
+interface SidebarProps {
+  className?: string;
+}
+
+export function Sidebar({ className }: SidebarProps = {}) {
   const [isOpen, setIsOpen] = useState(true);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const floatingSearchRef = useRef<HTMLInputElement | null>(null);
@@ -45,7 +49,7 @@ export function Sidebar() {
 
   return (
     <motion.aside
-      className="border-divider bg-sidebar relative flex h-screen flex-col border-l"
+      className={`border-divider bg-sidebar relative flex h-screen flex-col border-l ${className ?? ''}`.trim()}
       initial={false}
       animate={isOpen ? 'open' : 'collapsed'}
       variants={sidebarVariants}

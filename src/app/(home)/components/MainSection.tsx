@@ -13,7 +13,11 @@ import { ProgramDropdown } from "./ProgramDropdown";
 import bgVector1 from "@/assets/icons/Group-1.svg";
 import bgVector2 from "@/assets/icons/Group-2.svg";
 
-export function MainSection() {
+interface MainSectionProps {
+  onOpenMobileSidebar?: () => void;
+}
+
+export function MainSection({ onOpenMobileSidebar }: MainSectionProps) {
   const [message, setMessage] = useState("");
   const hasInteracted = useChatStore((state) => state.hasInteracted);
   const messages = useChatStore((state) => state.messages);
@@ -32,17 +36,42 @@ export function MainSection() {
   };
 
   return (
-    <main className="relative flex h-screen flex-1 flex-col">
-      <HomeHeader />
+    <main className="relative flex min-h-screen flex-1 flex-col md:h-screen">
+      {onOpenMobileSidebar ? (
+        <div className="border-divider bg-foreground/5 sticky top-0 z-40 flex items-center justify-between gap-3 border-b px-4 py-3 backdrop-blur md:hidden">
+          <button
+            type="button"
+            onClick={onOpenMobileSidebar}
+            className="bg-foreground/5 text-foreground relative flex h-10 w-10 items-center justify-center rounded-full border border-divider transition-all hover:bg-foreground/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60"
+            aria-label="باز کردن منو"
+          >
+            <span className="sr-only">باز کردن منو</span>
+            <span className="absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-1.5">
+              <span className="block h-0.5 w-6 rounded-full bg-foreground" />
+              <span className="block h-0.5 w-6 rounded-full bg-foreground" />
+              <span className="block h-0.5 w-6 rounded-full bg-foreground" />
+            </span>
+          </button>
 
-      <div className="flex-1 overflow-y-auto p-6">
+          <div className="flex flex-1 justify-end text-right">
+            {hasInteracted ? (
+              <ProgramDropdown className="w-full max-w-[220px]" />
+            ) : (
+              <span className="text-base font-semibold text-foreground">دستیار سلامت</span>
+            )}
+          </div>
+        </div>
+      ) : null}
+      <HomeHeader className="hidden md:flex" />
+
+      <div className="flex-1 overflow-y-auto p-4 md:p-6">
         <Image
           src={bgVector1}
           alt="vector"
           width={500}
           height={500}
           priority
-          className="absolute -left-60 -top-20 -z-50"
+          className="absolute -left-40 -top-20 -z-50 hidden lg:block"
           style={{ width: "auto", height: "auto" }}
         />
         <Image
@@ -51,7 +80,7 @@ export function MainSection() {
           width={500}
           height={500}
           priority
-          className="absolute -right-60 -bottom-20 -z-50"
+          className="absolute -right-40 -bottom-20 -z-50 hidden lg:block"
           style={{ width: "auto", height: "auto" }}
         />
         {hasInteracted ? (
@@ -78,9 +107,9 @@ export function MainSection() {
         )}
       </div>
 
-      <form onSubmit={handleSubmit} className="border-divider bg-foreground/5 backdrop-blur-sm border-t p-6">
-        <div className="flex h-11 items-center gap-2">
-          <div className="bg-input flex h-12 flex-1 items-center gap-4 rounded-full border border-accent shadow-lg">
+      <form onSubmit={handleSubmit} className="border-divider bg-foreground/5 backdrop-blur-sm border-t p-4 md:p-6">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+          <div className="bg-input flex h-12 flex-1 items-center gap-4 rounded-full border border-accent shadow-lg sm:h-12">
             <button
               type="submit"
               className="bg-foreground/10 rounded-full p-4 transition-colors hover:bg-foreground/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60 disabled:cursor-not-allowed disabled:opacity-60"
